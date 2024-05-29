@@ -57,6 +57,23 @@ class UrlController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Url  $url
+     * @return RedirectResponse
+     */
+    public function destroy(Request $request, Url $url): RedirectResponse
+    {
+        if ($request->user()->cannot('delete', $url)) {
+            abort(403);
+        }
+
+        $url->delete();
+
+        return redirect()->back();
+    }
+
 
     /**
      * Redirect to the original URL.

@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, useForm } from "@inertiajs/vue3";
+import { Head, useForm, router } from "@inertiajs/vue3";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
@@ -26,6 +26,12 @@ const saveUrl = () => {
         preserveScroll: true,
         onFinish: () => form.reset(),
     });
+};
+
+const deleteUrl = (id) => {
+    if (confirm("Are you sure you want to delete this URL?")) {
+        router.delete(`/urls/${id}`);
+    }
 };
 </script>
 
@@ -119,7 +125,11 @@ const saveUrl = () => {
                                     </td>
                                     <td class="px-6 py-4 flex gap-4">
                                         <SecondaryButton>Edit</SecondaryButton>
-                                        <DangerButton>Delete</DangerButton>
+                                        <DangerButton
+                                            @click="deleteUrl(url.id)"
+                                        >
+                                            Delete
+                                        </DangerButton>
                                     </td>
                                 </tr>
                             </tbody>
