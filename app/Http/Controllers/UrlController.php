@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Url;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -27,10 +28,10 @@ class UrlController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  Request  $request
+     * @return RedirectResponse
      */
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'original_url' => 'required|url'
@@ -61,9 +62,9 @@ class UrlController extends Controller
      * Redirect to the original URL.
      *
      * @param  string  $shortened_url
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function redirect(string $shortened_url)
+    public function redirect(string $shortened_url): RedirectResponse
     {
         $url = Url::where('shortened_url', $shortened_url)->firstOrFail();
 

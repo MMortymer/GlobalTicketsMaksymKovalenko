@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
 require __DIR__.'/auth.php';
+
+// Route to handle redirection
+// Should remain the last route defined due to it's catch-all nature
+Route::get('/{shortened_url}', [UrlController::class, 'redirect']);
