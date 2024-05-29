@@ -1,6 +1,11 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, useForm } from "@inertiajs/vue3";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import DangerButton from "@/Components/DangerButton.vue";
+import InputError from "@/Components/InputError.vue";
+import TextInput from "@/Components/TextInput.vue";
 
 const props = defineProps({
     urls: {
@@ -10,6 +15,18 @@ const props = defineProps({
         type: Object,
     },
 });
+
+const form = useForm({
+    id: null,
+    original_url: "",
+});
+
+const saveUrl = () => {
+    form.post(route("url.create"), {
+        preserveScroll: true,
+        onFinish: () => form.reset(),
+    });
+};
 </script>
 
 <template>
@@ -32,6 +49,33 @@ const props = defineProps({
                     </h1>
 
                     <div class="relative overflow-x-auto mt-6">
+                        <form
+                            @submit.prevent="saveUrl"
+                            class="my-4 flex flex-col items-center"
+                        >
+                            <div class="flex items-center gap-4">
+                                <TextInput
+                                    id="original_url"
+                                    type="text"
+                                    class="mt-1 block w-96"
+                                    v-model="form.original_url"
+                                    required
+                                    placeholder="Add new URL"
+                                />
+
+                                <PrimaryButton
+                                    :class="{ 'opacity-25': form.processing }"
+                                    :disabled="form.processing"
+                                >
+                                    Save
+                                </PrimaryButton>
+                            </div>
+                            <InputError
+                                class="mt-2"
+                                :message="form.errors.original_url"
+                            />
+                        </form>
+
                         <table
                             class="w-full text-sm text-left rtl:text-right text-gray-500 rounded overflow-clip"
                         >

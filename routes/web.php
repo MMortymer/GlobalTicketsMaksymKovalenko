@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UrlController::class, 'index'])->name('dashboard');
+    Route::post('/urls', [UrlController::class, 'store'])->name('url.create');
 });
 
 Route::middleware('auth')->group(function () {
