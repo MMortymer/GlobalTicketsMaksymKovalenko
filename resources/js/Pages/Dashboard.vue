@@ -24,7 +24,7 @@ const form = useForm({
 const saveUrl = () => {
     form.post(route("url.create"), {
         preserveScroll: true,
-        onFinish: () => form.reset(),
+        onSuccess: () => form.reset(),
     });
 };
 
