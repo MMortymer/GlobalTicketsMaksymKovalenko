@@ -9,7 +9,7 @@ import TextInput from "@/Components/TextInput.vue";
 
 const props = defineProps({
     urls: {
-        type: Object,
+        type: Array,
     },
     auth: {
         type: Object,
@@ -82,7 +82,22 @@ const deleteUrl = (id) => {
                             />
                         </form>
 
+                        <div
+                            v-if="urls.length === 0"
+                            class="py-3 flex items-center flex-col text-xl w-full"
+                        >
+                            <span
+                                >Seems you don't have any URLs at the moment
+                                :(</span
+                            >
+                            <span
+                                >Try adding a new one with the form above
+                                ☝🏻</span
+                            >
+                        </div>
+
                         <table
+                            v-else
                             class="w-full text-sm text-left rtl:text-right text-gray-500 rounded overflow-clip"
                         >
                             <thead
