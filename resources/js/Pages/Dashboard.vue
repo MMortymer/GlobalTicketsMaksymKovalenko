@@ -118,16 +118,8 @@ const saveUrl = () => {
                                         >
                                     </td>
                                     <td class="px-6 py-4 flex gap-4">
-                                        <button
-                                            class="bg-blue-500 text-white px-2 py-1 rounded"
-                                        >
-                                            Edit
-                                        </button>
-                                        <button
-                                            class="bg-red-500 text-white px-2 py-1 rounded"
-                                        >
-                                            Delete
-                                        </button>
+                                        <SecondaryButton>Edit</SecondaryButton>
+                                        <DangerButton>Delete</DangerButton>
                                     </td>
                                 </tr>
                             </tbody>
