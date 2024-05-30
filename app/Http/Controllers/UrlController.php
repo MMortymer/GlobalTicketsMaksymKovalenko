@@ -58,8 +58,31 @@ class UrlController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request  $request
+     * @param  \App\Models\Url  $url
+     * @return RedirectResponse
+     */
+    public function update(Request $request, Url $url): RedirectResponse
+    {
+        if ($request->user()->cannot('update', $url)) {
+            abort(403);
+        }
+
+        $request->validate([
+            'original_url' => 'required|url'
+        ]);
+
+        $url->update($request->only('original_url'));
+
+        return redirect()->back();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
+     * @param  Request  $request
      * @param  \App\Models\Url  $url
      * @return RedirectResponse
      */

@@ -37,7 +37,7 @@ class UrlPolicy
      */
     public function update(User $user, Url $url): bool
     {
-        //
+        return $user->id === $url->user_id;
     }
 
     /**

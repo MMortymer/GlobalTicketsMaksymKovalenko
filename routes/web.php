@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UrlController::class, 'index'])->name('dashboard');
     Route::post('/urls', [UrlController::class, 'store'])->name('url.create');
+    Route::put('/urls/{url}', [UrlController::class, 'update']);
     Route::delete('/urls/{url}', [UrlController::class, 'destroy']);
 });
 
