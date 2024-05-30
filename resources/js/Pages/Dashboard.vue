@@ -7,6 +7,7 @@ import DangerButton from "@/Components/DangerButton.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
 import Pagination from "@/Components/Pagination.vue";
+import CopyLinkIcon from "@/Components/Icons/CopyLinkIcon.vue";
 import { ref } from "vue";
 
 const props = defineProps({
@@ -57,6 +58,21 @@ const updateUrl = (id) => {
     );
     editingUrlId.value = null;
     editingOriginalUrl.value = "";
+};
+
+const copyUrl = (id) => {
+    const url = props.urls.data.find((url) => url.id === id);
+    if (url) {
+        const fullUrl = window.location.origin + "/" + url.shortened_url;
+        navigator.clipboard
+            .writeText(fullUrl)
+            .then(() => {
+                alert("URL copied to clipboard!");
+            })
+            .catch((err) => {
+                console.error("Could not copy text: ", err);
+            });
+    }
 };
 </script>
 
@@ -177,7 +193,7 @@ const updateUrl = (id) => {
                                             >
                                         </td>
                                         <td
-                                            class="px-6 py-4 flex justify-end gap-4"
+                                            class="px-6 py-4 flex items-center justify-end gap-4"
                                         >
                                             <PrimaryButton
                                                 v-if="editingUrlId === url.id"
@@ -191,11 +207,16 @@ const updateUrl = (id) => {
                                             >
                                                 Cancel
                                             </SecondaryButton>
-                                            <SecondaryButton
-                                                v-else
-                                                @click="editUrl(url)"
-                                                >Edit</SecondaryButton
-                                            >
+                                            <template v-else>
+                                                <CopyLinkIcon
+                                                    class="cursor-pointer"
+                                                    @click="copyUrl(url.id)"
+                                                />
+                                                <SecondaryButton
+                                                    @click="editUrl(url)"
+                                                    >Edit</SecondaryButton
+                                                >
+                                            </template>
                                             <DangerButton
                                                 @click="deleteUrl(url.id)"
                                             >
