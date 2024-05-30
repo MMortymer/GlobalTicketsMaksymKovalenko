@@ -6,11 +6,12 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
+import Pagination from "@/Components/Pagination.vue";
 import { ref } from "vue";
 
 const props = defineProps({
     urls: {
-        type: Array,
+        type: Object,
     },
     auth: {
         type: Object,
@@ -110,7 +111,7 @@ const updateUrl = (id) => {
 
                         <div class="overflow-x-scroll">
                             <div
-                                v-if="urls.length === 0"
+                                v-if="urls.data.length === 0"
                                 class="py-3 flex items-center flex-col text-xl w-full"
                             >
                                 <span
@@ -147,7 +148,7 @@ const updateUrl = (id) => {
                                 </thead>
                                 <tbody>
                                     <tr
-                                        v-for="url in urls"
+                                        v-for="url in urls.data"
                                         :key="url.id"
                                         class="bg-white border-b"
                                     >
@@ -205,6 +206,12 @@ const updateUrl = (id) => {
                                 </tbody>
                             </table>
                         </div>
+
+                        <Pagination
+                            v-if="urls.data.length > 0"
+                            :links="urls.links"
+                            class="mt-6 flex justify-center"
+                        />
                     </div>
                 </div>
             </div>

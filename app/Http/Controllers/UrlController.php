@@ -20,8 +20,10 @@ class UrlController extends Controller
      */
     public function index(): Response
     {
+        $urls = auth()->user()->urls()->paginate(10); // 10 items per page
+        
         return Inertia::render('Dashboard', [
-            'urls' => auth()->user()->urls()->get()
+            'urls' => $urls,
         ]);
     }
 
