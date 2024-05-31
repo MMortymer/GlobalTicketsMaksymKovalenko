@@ -2,6 +2,8 @@
 
 Welcome to the URL Shortener application! This application allows users to shorten URLs and manage them through a user-friendly dashboard. It's built with Laravel 11 and Vue 3 using the Inertia.js stack.
 
+![Dashboard Page](https://github.com/MMortymer/GlobalTicketsMaksymKovalenko/blob/main/public/images/dashboardScreenshot.png)
+
 ## Features
 
 -   User Registration and Authentication
