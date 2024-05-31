@@ -148,7 +148,7 @@ const copyUrl = (id) => {
                                     class="text-xs text-gray-700 uppercase bg-gray-50"
                                 >
                                     <tr>
-                                        <th scope="col" class="w-44 px-6 py-3">
+                                        <th scope="col" class="w-40 px-6 py-3">
                                             Shortened URL
                                         </th>
                                         <th scope="col" class="px-6 py-3">
@@ -178,7 +178,7 @@ const copyUrl = (id) => {
                                                 >{{ url.shortened_url }}</a
                                             >
                                         </th>
-                                        <td class="px-3 py-4">
+                                        <td class="px-3 py-4 overflow-scroll">
                                             <input
                                                 v-if="editingUrlId === url.id"
                                                 v-model="editingOriginalUrl"
@@ -188,7 +188,7 @@ const copyUrl = (id) => {
                                                 v-else
                                                 :href="url.original_url"
                                                 target="_blank"
-                                                class="px-3 text-base"
+                                                class="px-3 text-base text-nowrap"
                                                 >{{ url.original_url }}</a
                                             >
                                         </td>
