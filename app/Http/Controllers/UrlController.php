@@ -5,11 +5,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Url;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\V1\StoreUrlRequest;
 
 class UrlController extends Controller
 {
@@ -30,15 +31,11 @@ class UrlController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  StoreUrlRequest  $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreUrlRequest $request): RedirectResponse
     {
-        $request->validate([
-            'original_url' => 'required|url'
-        ]);
-
         // Generate a 7-character random string for the shortened URL.
         // The choice of 7 characters strikes a balance between being user-friendly
         // and providing a large number of unique combinations (62^7, using upper and lower case letters and digits).
