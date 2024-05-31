@@ -178,7 +178,7 @@ const copyUrl = (id) => {
                                                 >{{ url.shortened_url }}</a
                                             >
                                         </th>
-                                        <td class="px-3 py-4 overflow-scroll">
+                                        <td class="px-3 py-4 overflow-clip">
                                             <input
                                                 v-if="editingUrlId === url.id"
                                                 v-model="editingOriginalUrl"
