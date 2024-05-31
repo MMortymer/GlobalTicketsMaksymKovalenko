@@ -87,5 +87,7 @@ class UrlController extends Controller
     public function destroy( Url $url)
     {
         $url->delete();
+
+        return response()->json(null, 204);
     }
 }
