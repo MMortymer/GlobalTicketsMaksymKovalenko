@@ -113,6 +113,23 @@ The API endpoints are available under `/api/v1/urls` and can be tested using too
 
 This application does not currently implement token-based authentication for API requests. In a production environment, it is recommended to use Laravel Sanctum or Passport for secure API authentication.
 
+## Main Files Location
+### Controllers
+- app/Http/Controllers/Api/V1/UrlController.php: Contains actions for URL-related API endpoints.
+- app/Http/Controllers/UrlController.php: Contains actions for URL-related web routes.
+### Routes
+- routes/api.php: Defines routes for API endpoints related to URL management.
+- routes/web.php: Defines routes for web pages and user interfaces.
+### Tests
+- tests/Feature/UrlApiControllerTest.php: Contains feature tests for URL API endpoints.
+- tests/Unit/UrlShorteningTest.php: Contains unit tests for URL shortening functionality.
+### Pages & Components
+- resources/js/Pages/Welcome.vue: Vue component for the welcome page.
+- resources/js/Pages/Dashboard.vue: Vue component for the user dashboard.
+### Database, Seeders, Factories
+- database: Contains database migration files and seeders for initializing the database with sample data.
+
+
 ## Additional Notes
 
 -   Styling: The interface styling is minimal, I tried to implement some brand colors and logo.
